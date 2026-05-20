@@ -4,6 +4,125 @@ import java.util.*;
 
 public class Strings {
 
+    public static void main(String[] args) {
+
+        System.out.print(sumOfNumbers("1xyz23"));
+
+    }
+
+    // Sum of the Numbers in a String
+    // tc is o(n) sc is o(1)
+    public static int sumOfNumbers(String s) {
+        int sum = 0;
+        String temp = "";
+
+        // Traverse each character
+        for (int i = 0; i < s.length(); i++) {
+            char c = s.charAt(i);
+            if (Character.isDigit(c)) {
+                temp += c; // Append digit
+            } else {
+                if (!temp.equals("")) {
+                    sum += Integer.parseInt(temp);
+                    temp = ""; // Reset
+                }
+            }
+        }
+
+        // Add last number if any
+        if (!temp.equals("")) {
+            sum += Integer.parseInt(temp);
+        }
+
+        return sum;
+    }
+
+    // Capitalize first and last character of each word of a string
+    // tc is o(n) sc is o(n)
+    public static String firstLastCharCapital(String s) {
+
+        String[] arr = s.split(" ");
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < arr.length; i++) {
+            String word = arr[i];
+            if (word.isEmpty()) {
+                continue;
+            }
+
+            String capitalized;
+            if (word.length() == 1) {
+                capitalized = word.toUpperCase();
+            } else {
+                String first = word.substring(0, 1).toUpperCase();
+                String last = word.substring(word.length() - 1).toUpperCase();
+                String middle = word.substring(1, word.length() - 1);
+                capitalized = first + middle + last;
+            }
+
+            if (sb.length() > 0) {
+                sb.append(' ');
+            }
+            sb.append(capitalized);
+        }
+        return sb.toString();
+    }
+
+    // Calculate Frequency of characters in a String
+    // tc is o(n) sc is o(1)
+    public static void freqCount(String s) {
+        int[] Freq = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            Freq[s.charAt(i) - 'a']++;
+        }
+        for (int i = 0; i < 26; i++) {
+            if (Freq[i] != 0) {
+                System.out.print((char) (i + 'a'));
+                System.out.print(Freq[i] + " ");
+            }
+        }
+
+    }
+
+    // Find Non-repeating characters of a String
+    // tc is o(n) sc is o(1)
+    public static void nonRepeatingChar(String s) {
+
+        int[] Freq = new int[26];
+        for (int i = 0; i < s.length(); i++) {
+            Freq[s.charAt(i) - 'a']++;
+        }
+        for (int i = 0; i < s.length(); i++) {
+            if (Freq[s.charAt(i) - 'a'] == 1) {
+                System.out.print((char) (s.charAt(i) - 'a' + 'a'));
+            }
+        }
+    }
+
+    // check anagrams
+    // tc is o(n) sc is o(1)
+    public static boolean isAnagram(String s1, String s2) {
+        if (s1.length() != s2.length()) {
+            return false;
+        }
+
+        int[] Freq = new int[26];
+
+        for (int i = 0; i < s1.length(); i++) {
+            Freq[s1.charAt(i) - 'A']++;
+        }
+        for (int i = 0; i < s2.length(); i++) {
+            Freq[s2.charAt(i) - 'A']--;
+        }
+
+        for (int i = 0; i < 26; i++) {
+            if (Freq[i] != 0) {
+                return false;
+            }
+        }
+
+        return true;
+    }
+
     // Maximum occurring character in a string
     // tc is o(n) sc is o(1)
     public static Character maxChar(String s) {
@@ -190,9 +309,4 @@ public class Strings {
         return count;
     }
 
-    public static void main(String[] args) {
-
-        duplicateChars("sinstriiintng");
-
-    }
 }
