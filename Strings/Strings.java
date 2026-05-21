@@ -6,8 +6,86 @@ public class Strings {
 
     public static void main(String[] args) {
 
-        System.out.print(sumOfNumbers("1xyz23"));
+        System.out.print(removeVowels("I am very happy today"));
 
+    }
+
+    // Remove all vowels from the String
+    // tc is o(n) sc is o(n)
+    public static String removeVowels(String s) {
+
+        int n = s.length();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            if (c == 'a' || c == 'A' || c == 'i' || c == 'I' ||
+                    c == 'e' || c == 'E' || c == 'o' || c == 'O' ||
+                    c == 'u' || c == 'U') {
+                continue;
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+    // Remove Spaces from a String
+    // tc is o(n) sc is o(n)
+    public static String removeSpaces(String s) {
+
+        int n = s.length();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            if (c == ' ') {
+                continue;
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+    // Remove characters from a string except alphabets
+    // tc is o(n) sc is o(n)
+    public static String removeNonAlphabets(String s) {
+
+        int n = s.length();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+            if (Character.isLetter(c)) {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
+    }
+
+    // Reverse a String
+    // tc is o(n) sc is o(n)
+    public static String reverseString(String s) {
+        StringBuilder sb = new StringBuilder(s);
+        sb.reverse();
+        return sb.toString();
+    }
+
+    // Remove brackets from an algebraic expression
+    // tc is o(n) sc is o(n)
+    public static String removeBrackets(String s) {
+
+        int n = s.length();
+        StringBuilder sb = new StringBuilder();
+
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+
+            if (c == '(' || c == ')') {
+                continue;
+            } else {
+                sb.append(c);
+            }
+        }
+        return sb.toString();
     }
 
     // Sum of the Numbers in a String
