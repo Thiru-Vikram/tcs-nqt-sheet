@@ -6,8 +6,58 @@ public class Strings {
 
     public static void main(String[] args) {
 
-        System.out.print(removeVowels("I am very happy today"));
+        System.out.print(isPalindrome("ABCDCBA"));
 
+    }
+
+    // Check if the given String is Palindrome or not
+    // tc is o(n) sc is o(1);
+    public static String isPalindrome(String s) {
+        int n = s.length();
+        int i = 0;
+        int j = n - 1;
+        while (i <= j) {
+            if (s.charAt(i) != s.charAt(j)) {
+                return "Not Palindrome";
+            }
+            i++;
+            j--;
+        }
+        return "Palindrome";
+    }
+
+    // Count number of vowels, consonants, spaces in String
+    // tc is o(n) sc is o(1)
+    public static void countAll(String s) {
+
+        int n = s.length();
+        s = s.toLowerCase();
+        int vowels = 0;
+        int consonents = 0;
+        int whiteSpaces = 0;
+
+        for (int i = 0; i < n; i++) {
+            char c = s.charAt(i);
+
+            if (c == ' ') {
+                whiteSpaces++;
+            } else if (c == 'a' || c == 'e' || c == 'i' ||
+                    c == 'o' || c == 'u') {
+                vowels++;
+            } else {
+                consonents++;
+            }
+        }
+        System.out.println("vowels : " + vowels);
+        System.out.println("consonents : " + consonents);
+        System.out.println("whiteSpaces : " + whiteSpaces);
+
+    }
+
+    // Find the ASCII value of a character
+    // tc is o(1) sc is o(1)
+    public static int findASCII(Character c) {
+        return (int) c;
     }
 
     // Remove all vowels from the String
