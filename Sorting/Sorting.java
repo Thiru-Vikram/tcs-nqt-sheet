@@ -8,8 +8,75 @@ public class Sorting {
 
         int[] arr = { 7, 2, 4, 8, 9, 5, 3, 1, 6 };
 
-        System.out.print(Arrays.toString(quickSort(arr)));
+        System.out.print(Arrays.toString(insertionSort(arr)));
 
+    }
+
+    // insertion sort
+    public static int[] insertionSort(int[] arr) {
+        int n = arr.length;
+
+        for (int i = 1; i < n; i++) {
+            int key = arr[i];
+            int j = i - 1;
+
+            while (j >= 0 && arr[j] > key) {
+                arr[j + 1] = arr[j];
+                j--;
+            }
+
+            arr[j + 1] = key;
+        }
+        return arr;
+    }
+
+    // bubble sort always compare i and i+1 ele swap
+    // for every iteration largest ele at end
+    // tc is o(n^2) and sc is o(1).
+    public static int[] bubbleSort(int[] arr) {
+        int n = arr.length;
+
+        for (int i = 0; i < n - 1; i++) {
+            boolean swapped = false;
+
+            for (int j = 0; j < n - i - 1; j++) {
+
+                if (arr[j] > arr[j + 1]) {
+                    int temp = arr[j];
+                    arr[j] = arr[j + 1];
+                    arr[j + 1] = temp;
+                    swapped = true;
+                }
+            }
+            // if not swaped means right part is already sorted so
+            // break and move to next iteration
+            if (swapped == false)
+                break;
+        }
+        return arr;
+    }
+
+    // selection sort select min in a range and place at ele at first
+    // move the point next
+    // // tc is o(n^2) and sc is o(1).
+    public static int[] selectionSort(int[] arr) {
+        int n = arr.length;
+
+        for (int i = 0; i < n - 1; i++) {
+            int midIdx = i;
+
+            for (int j = i + 1; j < n; j++) {
+                if (arr[j] < arr[midIdx]) {
+                    midIdx = j;
+                }
+            }
+
+            int temp = arr[i];
+            arr[i] = arr[midIdx];
+            arr[midIdx] = temp;
+        }
+
+        return arr;
     }
 
     public static int[] quickSort(int[] array) {
