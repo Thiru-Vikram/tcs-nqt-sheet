@@ -4,10 +4,79 @@ public class NumberSystem {
 
     public static void main(String[] args) {
 
-        System.out.print(octalToDecimal(170));
+        System.out.print(decimalToBinary(18));
 
     }
 
+    // Convert Binary to Octal
+    // tc is o(n) sc is o(n)
+    public static String binaryToOctal(String s) {
+        int n = s.length();
+        if (n % 3 == 1) {
+            s = "00" + s;
+        } else if (n % 3 == 2) {
+            s = "0" + s;
+        }
+
+        n = s.length();
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < n; i += 3) {
+            int temp = (s.charAt(i) - '0') * 4
+                    + (s.charAt(i + 1) - '0') * 2
+                    + (s.charAt(i + 2) - '0');
+            sb.append((char) (temp + '0'));
+        }
+        return sb.toString();
+    }
+
+    // Convert Decimal to Binary Number
+    // tc is o(n) sc is o(n)
+    public static int decimalToBinary(int num) {
+        String s = Integer.toBinaryString(num);
+        int ans = Integer.parseInt(s);
+        return ans;
+    }
+
+    // Convert Decimal to Octal
+    // tc is o(n) sc is o(n)
+    public static int decimalToOctal(int num) {
+
+        StringBuilder sb = new StringBuilder();
+        int temp = num;
+        while (temp != 0) {
+            int rem = temp % 8;
+            sb.append(rem);
+            int quo = temp / 8;
+            temp = quo;
+        }
+        String str = sb.reverse().toString();
+        int ans = Integer.parseInt(str);
+        return ans;
+    }
+
+    // Convert Octal to Binary
+    // tc is o(n) sc is o(1)
+    public static String octalToBinary(int num) {
+
+        String s = Integer.toString(num);
+        int n = s.length();
+        StringBuilder sb = new StringBuilder(n * 3);
+        for (int i = 0; i < n; i++) {
+            int digit = s.charAt(i) - '0';
+            if (digit < 0 || digit > 7) {
+                return "";
+            }
+            String bin = Integer.toBinaryString(digit);
+            for (int k = bin.length(); k < 3; k++) {
+                sb.append('0');
+            }
+            sb.append(bin);
+        }
+        return sb.toString();
+    }
+
+    // Convert Octal to Decimal
+    // tc is o(n) sc is o(1)
     public static int octalToDecimal(int num) {
         int sum = 0;
         int power = 1;
