@@ -8,6 +8,13 @@ public class NumberSystem {
 
     }
 
+    // convert Binary to Decimal
+    // tc is O(1) sc is o(1)
+    public static int binaryToDecimal(String s) {
+        int num = Integer.parseInt(s, 2);
+        return num;
+    }
+
     // Convert Binary to Octal
     // tc is o(n) sc is o(n)
     public static String binaryToOctal(String s) {
